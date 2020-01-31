@@ -24,13 +24,9 @@ mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/s
 ```
 2. Add a splashscreen (250x122px) in `/root/pwnagotchi-splashcreen.png`
 
-3. Edit config file:
+3. Edit `/etc/pwnagotchi/config.yml` config file:
 
 ```diff
-diff --git a/etc/pwnagotchi/config.yml b/etc/pwnagotchi/config.yml
-index 30c696d..b556489 100644
---- a/etc/pwnagotchi/config.yml
-+++ b/etc/pwnagotchi/config.yml
 @@ -6,22 +6,3 @@
  #     type: 'inkyphat'
  #     color: 'black'
@@ -40,13 +36,9 @@ index 30c696d..b556489 100644
 +    on_frame: 'pwnagotchi-viewer-next'
 ```
 
-4. Edit service file:
+4. Edit `/etc/systemd/system/pwnagotchi.service` service file:
 
 ```diff
-diff --git a/etc/systemd/system/pwnagotchi.service b/etc/systemd/system/pwnagotchi.service
-index 43231b6..84287c5 100644
---- a/etc/systemd/system/pwnagotchi.service
-+++ b/etc/systemd/system/pwnagotchi.service
 @@ -7,9 +7,7 @@ After=pwngrid-peer.service
  [Service]
  Type=simple
