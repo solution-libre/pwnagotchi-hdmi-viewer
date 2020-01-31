@@ -7,15 +7,17 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 FILE=/root/pwnagotchi.png
+TMP_FILE_1=/tmp/pwnagotchi-alias-1.png
+TMP_FILE_2=/tmp/pwnagotchi-alias-2.png
 
 trap "pkill fbi; exit" SIGINT SIGTERM SIGKILL
 
 main() {
-    fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 /root/pwnagotchi.png /tmp/pwnagotchi-alias-1.png /tmp/pwnagotchi-alias-2.png
+    fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $TMP_FILE_1 $TMP_FILE_2
 }
 
-rm -f /tmp/pwnagotchi-alias-1.png && ln -s /root/pwnagotchi.png /tmp/pwnagotchi-alias-1.png
-rm -f /tmp/pwnagotchi-alias-2.png && ln -s /root/pwnagotchi.png /tmp/pwnagotchi-alias-2.png
+rm -f $TMP_FILE_1 && ln -s $FILE $TMP_FILE_1
+rm -f $TMP_FILE_2 && ln -s $FILE $TMP_FILE_2
 main
 
 while :; do
