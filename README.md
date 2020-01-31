@@ -14,15 +14,17 @@ It's a Proof of Concept to display [Pwnagotchi](https://pwnagotchi.ai/) output v
 
 ## Setup
 
+1. Add the script files:
+
 ```sh
 cd /tmp
 git clone https://github.com/solution-libre/pwnagotchi-hdmi-viewer.git
 cd pwnagotchi-hdmi-viewer
 mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/sbin
-
 ```
+2. Add a splashscreen (250x122px) in `/root/pwnagotchi-splashcreen.png`
 
-## Usage
+3. Edit config file:
 
 ```diff
 diff --git a/etc/pwnagotchi/config.yml b/etc/pwnagotchi/config.yml
@@ -37,6 +39,8 @@ index 30c696d..b556489 100644
 +  web:
 +    on_frame: 'pwnagotchi-viewer-next'
 ```
+
+4. Edit service file:
 
 ```diff
 diff --git a/etc/systemd/system/pwnagotchi.service b/etc/systemd/system/pwnagotchi.service
@@ -54,6 +58,16 @@ index 43231b6..84287c5 100644
  RestartSec=30
  TasksMax=infinity
 ```
+
+5. Reload systemctl
+
+```sh
+sudo systemctl daemon-reload
+```
+
+## Usage
+
+Plug in an HDMI display that is turned on your Raspberry Pi before sartting it up.
 
 ## Development
 
