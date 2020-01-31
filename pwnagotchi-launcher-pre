@@ -1,0 +1,4 @@
+#!/bin/sh
+  
+touch /root/.pwnagotchi-auto
+cp /root/QTG.png /root/pwnagotchi.png

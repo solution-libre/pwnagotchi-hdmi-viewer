@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+$TIOCSTI = 0x5412;
+$pid = `pgrep -n fbi`;
+chomp($pid);
+$tty = "/proc/$pid/fd/0";
+$char = "j";
+open($fh, ">", $tty);
+ioctl($fh, $TIOCSTI, $char)

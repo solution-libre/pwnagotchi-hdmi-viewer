@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Make sure only root can run our script
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+FILE=/root/pwnagotchi.png
+
+trap "pkill fbi; exit" SIGINT SIGTERM SIGKILL
+
+main() {
+    fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 /root/pwnagotchi.png /tmp/pwnagotchi-alias-1.png /tmp/pwnagotchi-alias-2.png
+}
+
+rm -f /tmp/pwnagotchi-alias-1.png && ln -s /root/pwnagotchi.png /tmp/pwnagotchi-alias-1.png
+rm -f /tmp/pwnagotchi-alias-2.png && ln -s /root/pwnagotchi.png /tmp/pwnagotchi-alias-2.png
+main
+
+while :; do
+    if [ -z "$(pgrep fbi)" ]; then
+        main
+    fi
+    sleep 0.5
+done
