@@ -6,6 +6,7 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+PWD=$(pwd)
 DIR=/var/tmp/pwnagotchi
 FILE=pwnagotchi.png
 ALIAS_FILE_1=pwnagotchi-alias-1.png
@@ -14,9 +15,10 @@ ALIAS_FILE_2=pwnagotchi-alias-2.png
 trap "pkill fbi; exit" SIGINT SIGTERM SIGKILL
 
 main() {
-    cd $DIR && fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
+     fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
 }
 
+cd $DIR
 rm -f $ALIAS_FILE_1 && ln -s $FILE $ALIAS_FILE_1
 rm -f $ALIAS_FILE_2 && ln -s $FILE $ALIAS_FILE_2
 main
@@ -27,3 +29,5 @@ while :; do
     fi
     sleep 0.5
 done
+
+cd $PWD
