@@ -20,20 +20,18 @@ It's a Proof of Concept to display [Pwnagotchi](https://pwnagotchi.ai/) output v
 cd /tmp
 git clone https://github.com/solution-libre/pwnagotchi-hdmi-viewer.git
 cd pwnagotchi-hdmi-viewer
-mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/sbin
+sudo mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/sbin
 ```
 2. Add a splashscreen (250x122px) in `/root/pwnagotchi-splashcreen.png`
 
-3. Edit `/etc/pwnagotchi/config.yml` config file:
+3. Edit `/etc/pwnagotchi/config.toml` config file:
 
 ```diff
-@@ -6,22 +6,3 @@
- #     type: 'inkyphat'
- #     color: 'black'
- #
-+ui:
-+  web:
-+    on_frame: 'pwnagotchi-viewer-next'
+@@ -2,3 +2,4 @@
+ # Example:
+ # ui.display.enabled = true
+ # ui.display.type = "waveshare_2"
++ui.web.on_frame = "pwnagotchi-viewer-next"
 ```
 
 4. Edit `/etc/systemd/system/pwnagotchi.service` service file:
@@ -56,6 +54,8 @@ mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/s
 ```sh
 sudo systemctl daemon-reload
 ```
+
+6. Reboot
 
 ## Usage
 
