@@ -1,4 +1,4 @@
-#!/bin/sh
-  
+#!/usr/bin/env sh
+
 touch /root/.pwnagotchi-auto
-cp /root/pwnagotchi-splashcreen.png /root/pwnagotchi.png
+cp /root/pwnagotchi-splashcreen.png /var/tmp/pwnagotchi/pwnagotchi.png

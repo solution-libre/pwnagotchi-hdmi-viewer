@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Make sure only root can run our script
 if [ "$(id -u)" != "0" ]; then
@@ -6,18 +6,21 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-FILE=/root/pwnagotchi.png
-TMP_FILE_1=/tmp/pwnagotchi-alias-1.png
-TMP_FILE_2=/tmp/pwnagotchi-alias-2.png
+PWD=$(pwd)
+DIR=/var/tmp/pwnagotchi
+FILE=pwnagotchi.png
+ALIAS_FILE_1=pwnagotchi-alias-1.png
+ALIAS_FILE_2=pwnagotchi-alias-2.png
 
 trap "pkill fbi; exit" SIGINT SIGTERM SIGKILL
 
 main() {
-    fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $TMP_FILE_1 $TMP_FILE_2
+     fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
 }
 
-rm -f $TMP_FILE_1 && ln -s $FILE $TMP_FILE_1
-rm -f $TMP_FILE_2 && ln -s $FILE $TMP_FILE_2
+cd $DIR
+rm -f $ALIAS_FILE_1 && ln -s $FILE $ALIAS_FILE_1
+rm -f $ALIAS_FILE_2 && ln -s $FILE $ALIAS_FILE_2
 main
 
 while :; do
@@ -26,3 +29,5 @@ while :; do
     fi
     sleep 0.5
 done
+
+cd $PWD

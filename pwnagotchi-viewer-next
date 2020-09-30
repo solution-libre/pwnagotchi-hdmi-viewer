@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 $TIOCSTI = 0x5412;
 $pid = `pgrep -n fbi`;
