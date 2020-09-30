@@ -59,7 +59,7 @@ sudo systemctl daemon-reload
 
 ## Usage
 
-Plug in an HDMI display that is turned on your Raspberry Pi before sartting it up.
+Plug a previously turned on HDMI display into your Raspberry Pi before starting it up.
 
 ## Development
 
