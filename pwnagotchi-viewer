@@ -12,13 +12,13 @@ FILE=pwnagotchi.png
 ALIAS_FILE_1=pwnagotchi-alias-1.png
 ALIAS_FILE_2=pwnagotchi-alias-2.png
 
-trap "pkill fbi; exit" SIGINT SIGTERM SIGKILL
+trap "pkill fbi; exit" SIGINT SIGTERM
 
 main() {
      fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
 }
 
-cd $DIR
+cd "$DIR" || exit
 rm -f $ALIAS_FILE_1 && ln -s $FILE $ALIAS_FILE_1
 rm -f $ALIAS_FILE_2 && ln -s $FILE $ALIAS_FILE_2
 main
@@ -30,4 +30,4 @@ while :; do
     sleep 0.5
 done
 
-cd $PWD
+cd "$PWD" || exit
