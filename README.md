@@ -16,44 +16,45 @@ It's a Proof of Concept to display [Pwnagotchi](https://pwnagotchi.ai/) output v
 
 1. Add the script files:
 
-```sh
-cd /tmp
-git clone https://github.com/solution-libre/pwnagotchi-hdmi-viewer.git
-cd pwnagotchi-hdmi-viewer
-sudo mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/sbin
-```
+   ```sh
+   cd /tmp
+   git clone https://github.com/solution-libre/pwnagotchi-hdmi-viewer.git
+   cd pwnagotchi-hdmi-viewer
+   sudo mv pwnagotchi-launcher-pre pwnagotchi-viewer pwnagotchi-viewer-next /usr/local/sbin
+   ```
+
 2. Add a splashscreen (250x122px) in `/root/pwnagotchi-splashcreen.png`
 
 3. Edit `/etc/pwnagotchi/config.toml` config file:
 
-```diff
-@@ -2,3 +2,4 @@
- # Example:
- # ui.display.enabled = true
- # ui.display.type = "waveshare_2"
-+ui.web.on_frame = "pwnagotchi-viewer-next"
-```
+   ```diff
+   @@ -2,3 +2,4 @@
+    # Example:
+    # ui.display.enabled = true
+    # ui.display.type = "waveshare_2"
+   +ui.web.on_frame = "pwnagotchi-viewer-next"
+   ```
 
 4. Edit `/etc/systemd/system/pwnagotchi.service` service file:
 
-```diff
-@@ -7,9 +7,7 @@ After=pwngrid-peer.service
- [Service]
- Type=simple
- PermissionsStartOnly=true
-+ExecStartPre=/usr/local/sbin/pwnagotchi-launcher-pre
- ExecStart=/usr/bin/pwnagotchi-launcher
-+ExecStartPost=start-stop-daemon --start -b --exec /usr/local/sbin/pwnagotchi-viewer
- Restart=always
- RestartSec=30
- TasksMax=infinity
-```
+   ```diff
+   @@ -7,9 +7,7 @@ After=pwngrid-peer.service
+    [Service]
+    Type=simple
+    PermissionsStartOnly=true
+   +ExecStartPre=/usr/local/sbin/pwnagotchi-launcher-pre
+    ExecStart=/usr/bin/pwnagotchi-launcher
+   +ExecStartPost=start-stop-daemon --start -b --exec /usr/local/sbin/pwnagotchi-viewer
+    Restart=always
+    RestartSec=30
+    TasksMax=infinity
+   ```
 
 5. Reload systemctl
 
-```sh
-sudo systemctl daemon-reload
-```
+   ```sh
+   sudo systemctl daemon-reload
+   ```
 
 6. Reboot
 
@@ -69,4 +70,4 @@ Plug a previously turned on HDMI display into your Raspberry Pi before starting 
 
 ## Contributors
 
-The list of contributors can be found at: https://github.com/solution-libre/pwnagotchi-hdmi-viewer/graphs/contributors
+The list of contributors can be found at: <https://github.com/solution-libre/pwnagotchi-hdmi-viewer/graphs/contributors>
