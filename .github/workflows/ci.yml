@@ -9,7 +9,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Lint Markdown
-      uses: actionshub/markdownlint@1.2.0
+      uses: actionshub/markdownlint@2.0.2
     - name: Run Shellcheck
       uses: azohra/shell-linter@latest
       with:
