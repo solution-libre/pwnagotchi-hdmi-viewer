@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use Term::ReadKey;
+
 $TIOCSTI = 0x5412;
 $pid = `pgrep -n fbi`;
 chomp($pid);
@@ -7,3 +9,16 @@ $tty = "/proc/$pid/fd/0";
 $char = "j";
 open($fh, ">", $tty);
 ioctl($fh, $TIOCSTI, $char)
+
+
+ReadMode('noecho');   # Turn off echo
+ReadMode('raw');      # Set raw mode to prevent any signal handling
+
+while (1) {
+    if (defined(my $key = ReadKey(-1))) {   # Read a single character
+        # Discard the input
+    }
+    else {
+        last;   # Exit the loop when there's no more input
+    }
+}
