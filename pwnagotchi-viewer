@@ -15,7 +15,7 @@ ALIAS_FILE_2=pwnagotchi-alias-2.png
 trap "pkill fbi; exit" SIGINT SIGTERM
 
 main() {
-     fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
+     fbi -T 1 -t 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
 }
 
 cd "$DIR" || exit
