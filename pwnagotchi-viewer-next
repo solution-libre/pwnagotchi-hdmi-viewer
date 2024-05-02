@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use Term::ReadKey;
 
 $TIOCSTI = 0x5412;
 $pid = `pgrep -n fbi`;
@@ -7,3 +8,14 @@ $tty = "/proc/$pid/fd/0";
 $char = "j";
 open($fh, ">", $tty);
 ioctl($fh, $TIOCSTI, $char)
+
+ReadMode('noecho')
+ReadMode('raw')
+
+while (1) {
+  if (defined(my $key = ReadKey(-1))) {
+  }
+  else {
+    last;
+  }
+}

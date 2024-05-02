@@ -6,28 +6,43 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+DEBUG=false
 PWD=$(pwd)
 DIR=/var/tmp/pwnagotchi
 FILE=pwnagotchi.png
 ALIAS_FILE_1=pwnagotchi-alias-1.png
 ALIAS_FILE_2=pwnagotchi-alias-2.png
+LOGS=/var/log/pwnagotchi_hdmi.log
 
 trap "pkill fbi; exit" SIGINT SIGTERM
+renew_images
 
 main() {
-     fbi -T 1 -d /dev/fb0 -a -noverbose -cachemem 0 $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
+  while :; do
+    if [ -z "$(pgrep fbi)" ]; then
+      fbi -T 1 -d /dev/fb0 -a -t 1 --cachemem 0 --noverbose $FILE $ALIAS_FILE_1 $ALIAS_FILE_2
+    fi
+    sleep 0.1
+  done
+}
+
+renew_images() {
+    ln -fs $FILE $ALIAS_FILE_1
+    ln -fs $FILE $ALIAS_FILE_2
 }
 
 cd "$DIR" || exit
-rm -f $ALIAS_FILE_1 && ln -s $FILE $ALIAS_FILE_1
-rm -f $ALIAS_FILE_2 && ln -s $FILE $ALIAS_FILE_2
-main
+coproc main
+
+# reset fbi after splash screen to solve a screen size problem (difference between splash screen and images, should be the same)
+sleep 5
+renew_images
+pkill fbi
 
 while :; do
-    if [ -z "$(pgrep fbi)" ]; then
-        main
-    fi
-    sleep 0.5
+  renew_images
+  sleep 0.5
+  if $DEBUG; then echo "getting new images" >> $LOGS; fi
 done
 
 cd "$PWD" || exit
