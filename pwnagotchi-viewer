@@ -15,7 +15,6 @@ ALIAS_FILE_2=pwnagotchi-alias-2.png
 LOGS=/var/log/pwnagotchi_hdmi.log
 
 trap "pkill fbi; exit" SIGINT SIGTERM
-renew_images
 
 main() {
   while :; do
@@ -30,6 +29,8 @@ renew_images() {
     ln -fs $FILE $ALIAS_FILE_1
     ln -fs $FILE $ALIAS_FILE_2
 }
+
+renew_images
 
 cd "$DIR" || exit
 coproc main
