@@ -26,8 +26,8 @@ main() {
 }
 
 renew_images() {
-    ln -fs $FILE $ALIAS_FILE_1
-    ln -fs $FILE $ALIAS_FILE_2
+  ln -fs $FILE $ALIAS_FILE_1
+  ln -fs $FILE $ALIAS_FILE_2
 }
 
 renew_images

@@ -15,8 +15,7 @@ ReadMode('raw');      # Set raw mode to prevent any signal handling
 while (1) {
     if (defined(my $key = ReadKey(-1))) {   # Read a single character
         # Discard the input
-    }
-    else {
+    } else {
         last;   # Exit the loop when there's no more input
     }
 }
