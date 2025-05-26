@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-
 use Term::ReadKey;
 
 $TIOCSTI = 0x5412;
@@ -9,7 +8,6 @@ $tty = "/proc/$pid/fd/0";
 $char = "j";
 open($fh, ">", $tty);
 ioctl($fh, $TIOCSTI, $char)
-
 
 ReadMode('noecho');   # Turn off echo
 ReadMode('raw');      # Set raw mode to prevent any signal handling
