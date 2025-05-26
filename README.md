@@ -11,10 +11,6 @@
 
 ## Description
 
-Jharttech:  I added some lines of perl to the pwnagotchi-viewer-next file to silence the "j" input to keep the screen focus from switching between tty1 and the viewer.  This was causing the screen to flash or flicker between the two continuously.
-
-I also added an extra flag to the fbi (linux framebuffer imageviewer) tool on line 18 to force refresh every second.  If you desire a different forced refresh you can try to adjust the -t 1 value.  More info on fbi [Here](https://linux.die.net/man/1/fbi).
-
 It's a Proof of Concept to display [Pwnagotchi](https://pwnagotchi.ai/) output via HDMI.
 
 ## Setup
