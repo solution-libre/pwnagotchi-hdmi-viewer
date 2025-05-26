@@ -1,5 +1,6 @@
 # Pwnagotchi output via HDMI
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### Table of Contents
 
 1. [Description](#description)
