@@ -65,7 +65,8 @@ Plug a previously turned on HDMI display into your Raspberry Pi before starting 
 
 ## Development
 
-[Solution Libre](https://www.solution-libre.fr)'s repositories are open projects, and community contributions are essential for keeping them great.
+[Solution Libre](https://www.solution-libre.fr)'s repositories are open projects,
+and community contributions are essential for keeping them great.
 
 [Fork this repo on GitHub](https://github.com/solution-libre/pwnagotchi-hdmi-viewer/fork)
 
